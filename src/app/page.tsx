@@ -1,69 +1,124 @@
 import Image from "next/image";
+import Link from "next/link";
+import HeroArtworkSlider from "@/components/HeroArtworkSlider";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
+import { rooms } from "@/data/siteData";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main className="site-shell home-page">
+      <SiteHeader />
+
+      <section className="home-hero" aria-label="SOYO featured exhibition">
         <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/images/hero/hero-gallery-clean.png"
+          alt="Sunlit gallery interior"
+          fill
           priority
+          sizes="100vw"
+          className="home-hero-bg cover-image"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+
+        <div className="home-hero-gallery-wall" aria-hidden="true" />
+        <div className="home-hero-left-grade" aria-hidden="true" />
+        <div className="home-hero-soft-light" aria-hidden="true" />
+
+        <div className="home-hero-copy">
+          <span className="eyebrow">SOYO · CURATED ART & OBJECT</span>
+          <h1>
+            Step into
+            <br />a living
+            <br />exhibition.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <div className="hero-copy-rule" />
+          <p>
+            Discover emerging creators from Asia.
+            <br />A more diverse art world, starting here.
           </p>
+          <Link className="primary-button" href="/exhibitions">
+            Enter Exhibition <span>→</span>
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="home-hero-slider-wrap">
+          <HeroArtworkSlider />
         </div>
-      </main>
-    </div>
+
+        <div className="gold-thread" aria-hidden="true" />
+        <div className="hero-side-note" aria-hidden="true">
+          <span>ART</span>
+          <span>CONNECTS</span>
+          <span>MORE</span>
+          <span>POSSIBILITIES</span>
+        </div>
+      </section>
+
+      <section className="home-rooms" aria-labelledby="rooms-title">
+        <div className="home-rooms-intro">
+          <span className="section-kicker">Current Exhibition</span>
+          <h2 id="rooms-title">Curated Rooms</h2>
+          <p>상품 목록이 아니라 서로 다른 시선의 전시 공간을 탐험합니다.</p>
+          <Link className="text-link" href="/exhibitions">
+            View All Exhibitions →
+          </Link>
+        </div>
+
+        <div className="home-room-grid">
+          {rooms.map((room) => (
+            <Link
+              className="home-room-card"
+              href={`/exhibitions#${room.id}`}
+              key={room.id}
+            >
+              <div className="home-room-media">
+                <Image
+                  src={room.image}
+                  alt={room.title}
+                  fill
+                  className="cover-image"
+                  sizes="(max-width: 800px) 90vw, 21vw"
+                />
+                <div className="room-light" />
+              </div>
+              <div className="home-room-meta">
+                <span>{room.number}</span>
+                <div>
+                  <h3>{room.title}</h3>
+                  <p>{room.description}</p>
+                </div>
+                <i>→</i>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-b2b" aria-labelledby="b2b-title">
+        <div className="home-b2b-media">
+          <Image
+            src="/images/b2b/b2b-gallery.jpg"
+            alt="Curated art in an interior"
+            fill
+            className="cover-image"
+            sizes="(max-width: 800px) 100vw, 64vw"
+          />
+          <div className="home-b2b-light" />
+        </div>
+        <div className="home-b2b-copy">
+          <span className="eyebrow">COLLECTORS · INTERIORS · BRANDS</span>
+          <h2 id="b2b-title">Commission &amp;<br />B2B Inquiry</h2>
+          <p>
+            공간 큐레이션, 브랜드 협업, 주문 제작 프로젝트를 위한
+            <br />SOYO의 B2B 제안 영역입니다.
+          </p>
+          <Link className="primary-button" href="/about#inquiry">
+            Get in touch <span>→</span>
+          </Link>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
   );
 }
