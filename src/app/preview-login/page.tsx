@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import styles from "./PreviewLogin.module.css";
 
+export const instant = false;
+
 export const metadata: Metadata = {
   title: "Private Preview | SOYO",
   robots: {
