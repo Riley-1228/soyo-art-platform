@@ -43,7 +43,7 @@ export default function HeroArtworkSlider() {
     pointerStart.current = event.clientX;
     suppressClick.current = false;
     setDragging(true);
-    event.currentTarget.setPointerCapture(event.pointerId);
+    
   };
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -127,7 +127,7 @@ export default function HeroArtworkSlider() {
                 aria-hidden={isHidden}
               >
                 <Link
-                  href="/works"
+                  href={`/works/${artwork.id}`}
                   className="soyo-art-card-link"
                   draggable={false}
                   tabIndex={isHidden ? -1 : 0}
