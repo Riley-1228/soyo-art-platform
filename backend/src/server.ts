@@ -3,6 +3,10 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 
+import {
+  checkDatabaseConnection,
+} from "./db";
+
 import inquiryRouter from "./routes/inquiries";
 
 const app =
@@ -89,6 +93,40 @@ app.get(
       service:
         "soyo-backend",
     });
+  }
+);
+
+app.get(
+  "/health/db",
+  async (
+    _request,
+    response
+  ) => {
+    try {
+      const database =
+        await checkDatabaseConnection();
+
+      return response.json({
+        ok: true,
+        database:
+          "connected",
+        serverTime:
+          database.server_time,
+      });
+    } catch (error) {
+      console.error(
+        "SOYO database health check failed:",
+        error
+      );
+
+      return response
+        .status(503)
+        .json({
+          ok: false,
+          database:
+            "disconnected",
+        });
+    }
   }
 );
 
