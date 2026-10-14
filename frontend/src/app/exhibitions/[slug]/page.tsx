@@ -231,10 +231,10 @@ export default async function ExhibitionDetailPage({
                         </p>
 
                         <a
-                          href="/artists"
-                          className="text-link"
+                        href={`/artists/${artist.id}`}
+                        className="text-link"
                         >
-                          View Artist Index →
+                        View Artist →
                         </a>
                       </div>
                     </article>
