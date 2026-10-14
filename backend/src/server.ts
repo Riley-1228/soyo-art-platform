@@ -99,9 +99,10 @@ app.use(
 
 app.listen(
   PORT,
+  "0.0.0.0",
   () => {
     console.log(
-      `SOYO backend running on http://localhost:${PORT}`
+      `SOYO backend running on port ${PORT}`
     );
   }
 );
