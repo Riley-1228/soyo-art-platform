@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import PurchaseInquiry from "@/components/PurchaseInquiry";
 import {
   artworks,
   artists,
@@ -169,18 +171,12 @@ export default async function ArtworkDetailPage({
               Sold
             </div>
           ) : (
-            <a
-              href="#inquiry"
-              className="artwork-inquiry-button"
-            >
-              <span>
-                Inquire to Collect
-              </span>
-
-              <span aria-hidden="true">
-                →
-              </span>
-            </a>
+            <PurchaseInquiry
+              artworkId={artwork.id}
+              artworkTitle={artwork.title}
+              artist={artwork.artist}
+              price={artwork.price}
+            />
           )}
 
 
@@ -294,40 +290,7 @@ export default async function ArtworkDetailPage({
       ) : null}
 
 
-      {/* TEMPORARY INQUIRY */}
 
-      {artwork.status !== "sold" ? (
-        <section
-          className="artwork-inquiry-preview"
-          id="inquiry"
-        >
-
-          <span className="section-kicker">
-            Collect with SOYO
-          </span>
-
-          <h2>
-            Interested in
-            <br />
-            {artwork.title}?
-          </h2>
-
-          <p>
-            구매 문의 기능은 다음 단계에서
-            작품 정보와 연결된 전용 폼으로
-            추가할 예정입니다.
-          </p>
-
-          <Link
-            href="/about#inquiry"
-            className="primary-button"
-          >
-            Contact SOYO
-            <span>→</span>
-          </Link>
-
-        </section>
-      ) : null}
 
 
       <SiteFooter />
