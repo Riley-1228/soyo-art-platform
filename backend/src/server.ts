@@ -7,6 +7,9 @@ import {
   checkDatabaseConnection,
 } from "./db";
 
+import artworkRouter from "./routes/artworks";
+import artistRouter from "./routes/artists";
+import exhibitionRouter from "./routes/exhibitions";
 import inquiryRouter from "./routes/inquiries";
 
 const app =
@@ -128,6 +131,21 @@ app.get(
         });
     }
   }
+);
+
+app.use(
+  "/api/artworks",
+  artworkRouter
+);
+
+app.use(
+  "/api/artists",
+  artistRouter
+);
+
+app.use(
+  "/api/exhibitions",
+  exhibitionRouter
 );
 
 app.use(
