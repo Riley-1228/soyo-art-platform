@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import B2BInquiryPreview from "@/components/B2BInquiryPreview";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about SOYO, a curated platform connecting artists, collectors, interiors and brands.",
+};
 
 export default function AboutPage() {
   return (
@@ -41,15 +49,40 @@ export default function AboutPage() {
 
       <section className="about-inquiry" id="inquiry">
         <div className="about-inquiry-image">
-          <Image src="/images/b2b/b2b-gallery.jpg" alt="Curated gallery space" fill className="cover-image" sizes="(max-width: 800px) 100vw, 58vw" />
+          <Image
+            src="/images/b2b/b2b-gallery.jpg"
+            alt="Curated gallery space"
+            fill
+            className="cover-image"
+            sizes="(max-width: 800px) 100vw, 58vw"
+          />
         </div>
+
         <div className="about-inquiry-copy">
           <span className="eyebrow">COLLECTORS · INTERIORS · BRANDS</span>
-          <h2>Commission & B2B Inquiry</h2>
-          <p>공간 큐레이션, 브랜드 협업, 주문 제작 프로젝트를 위한 테스트 문의 영역입니다.</p>
-          <a className="primary-button" href="mailto:hello@example.com">Get in touch <span>→</span></a>
-          <Link className="quiet-link" href="/works">Explore works</Link>
+          <h2>Commission &amp; B2B Inquiry</h2>
+          <p>
+            Use the Alpha inquiry flow to test requests for space curation,
+            brand collaboration, commissions, and corporate collections.
+          </p>
+          <Link className="quiet-link" href="/works">
+            Explore works
+          </Link>
         </div>
+      </section>
+
+      <section className="b2b-preview-section" aria-labelledby="b2b-preview-title">
+        <div className="b2b-preview-intro">
+          <span className="section-kicker">B2B Alpha Test</span>
+          <h2 id="b2b-preview-title">Prepare a project inquiry.</h2>
+          <p>
+            This step is intentionally lightweight. It lets testers review the
+            B2B request experience before database storage and email delivery
+            are connected.
+          </p>
+        </div>
+
+        <B2BInquiryPreview />
       </section>
       <SiteFooter />
     </main>

@@ -68,7 +68,7 @@ export default function Home() {
           {rooms.map((room) => (
             <Link
               className="home-room-card"
-              href={`/exhibitions#${room.id}`}
+              href={`/exhibitions/${room.id}`}
               key={room.id}
             >
               <div className="home-room-media">

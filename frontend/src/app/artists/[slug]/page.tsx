@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 import SiteFooter from "../../../components/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader";
@@ -20,6 +21,30 @@ export function generateStaticParams() {
   return artists.map((artist) => ({
     slug: artist.id,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: ArtistDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const artist = artists.find(
+    (item) => item.id === slug
+  );
+
+  if (!artist) {
+    return {
+      title: "Artist Not Found",
+    };
+  }
+
+  return {
+    title: artist.name,
+
+    description:
+      `${artist.name} — ${artist.location} · ` +
+      `${artist.discipline}. ${artist.statement}`,
+  };
 }
 
 function getStatusLabel(

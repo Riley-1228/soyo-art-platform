@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 
 import SiteFooter from "@/components/SiteFooter";
@@ -22,6 +23,31 @@ export function generateStaticParams() {
   return artworks.map((artwork) => ({
     slug: artwork.id,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: ArtworkDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const artwork = artworks.find(
+    (item) => item.id === slug
+  );
+
+  if (!artwork) {
+    return {
+      title: "Artwork Not Found",
+    };
+  }
+
+  return {
+    title: artwork.title,
+
+    description:
+      `${artwork.title} by ${artwork.artist}. ` +
+      `${artwork.year} · ${artwork.material}. ` +
+      `Discover this work on SOYO.`,
+  };
 }
 
 function getStatusLabel(status: string) {

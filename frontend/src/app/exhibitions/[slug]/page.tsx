@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 import SiteFooter from "../../../components/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader";
@@ -20,6 +21,30 @@ export function generateStaticParams() {
   return rooms.map((room) => ({
     slug: room.id,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: ExhibitionDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const room = rooms.find(
+    (item) => item.id === slug
+  );
+
+  if (!room) {
+    return {
+      title: "Exhibition Not Found",
+    };
+  }
+
+  return {
+    title: room.title,
+
+    description:
+      `${room.description} ${room.period}. ` +
+      `Explore this curated room on SOYO.`,
+  };
 }
 
 function getStatusLabel(
