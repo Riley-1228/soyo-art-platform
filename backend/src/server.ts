@@ -11,6 +11,11 @@ import artworkRouter from "./routes/artworks";
 import artistRouter from "./routes/artists";
 import exhibitionRouter from "./routes/exhibitions";
 import inquiryRouter from "./routes/inquiries";
+import adminAuthRouter from "./routes/adminAuth";
+import adminArtworkRouter from "./routes/adminArtworks";
+import adminArtistRouter from "./routes/adminArtists";
+import adminExhibitionRouter from "./routes/adminExhibitions";
+import adminInquiryRouter from "./routes/adminInquiries";
 
 const app =
   express();
@@ -70,12 +75,15 @@ app.use(
     methods: [
       "GET",
       "POST",
+      "PATCH",
+      "DELETE",
       "OPTIONS",
     ],
 
     allowedHeaders: [
       "Content-Type",
     ],
+    credentials: true,
   })
 );
 
@@ -151,6 +159,31 @@ app.use(
 app.use(
   "/api/inquiries",
   inquiryRouter
+);
+
+app.use(
+  "/api/admin/auth",
+  adminAuthRouter
+);
+
+app.use(
+  "/api/admin/artworks",
+  adminArtworkRouter
+);
+
+app.use(
+  "/api/admin/artists",
+  adminArtistRouter
+);
+
+app.use(
+  "/api/admin/exhibitions",
+  adminExhibitionRouter
+);
+
+app.use(
+  "/api/admin/inquiries",
+  adminInquiryRouter
 );
 
 app.listen(

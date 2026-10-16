@@ -1,15 +1,79 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import SiteFooter from "../../../components/SiteFooter";
-import SiteHeader from "../../../components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
-import {
-  artworks,
-  artists,
-  rooms,
-} from "../../../data/siteData";
+type ArtworkStatus =
+  | "available"
+  | "reserved"
+  | "sold";
+
+type ExhibitionApi = {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  image: string;
+  note: string;
+  period: string;
+  curatorialNote: string;
+  artistIds: string[];
+  artworkIds: string[];
+};
+
+type ArtistApi = {
+  id: string;
+  name: string;
+  location: string;
+  discipline: string;
+  image: string;
+  statement: string;
+  bio: string;
+  artworkIds: string[];
+  exhibitionIds: string[];
+};
+
+type ArtworkApi = {
+  id: string;
+  title: string;
+  artist: string;
+  artistId: string;
+  location: string;
+  year: string;
+  material: string;
+  dimensions: string;
+  category: string;
+  edition: string;
+  priceAmount: number;
+  currency: string;
+  price: string;
+  status: ArtworkStatus;
+  image: string;
+  description: string;
+  exhibitionId: string | null;
+  exhibitionIds: string[];
+};
+
+type ExhibitionApiResponse = {
+  ok: boolean;
+  exhibition?: ExhibitionApi;
+  error?: string;
+};
+
+type ArtistsApiResponse = {
+  ok: boolean;
+  artists?: ArtistApi[];
+  error?: string;
+};
+
+type ArtworksApiResponse = {
+  ok: boolean;
+  artworks?: ArtworkApi[];
+  error?: string;
+};
 
 type ExhibitionDetailPageProps = {
   params: Promise<{
@@ -17,10 +81,107 @@ type ExhibitionDetailPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return rooms.map((room) => ({
-    slug: room.id,
-  }));
+const API_BASE_URL = (
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "http://localhost:4000"
+).replace(/\/$/, "");
+
+export const dynamic = "force-dynamic";
+
+async function getExhibition(
+  slug: string
+): Promise<ExhibitionApi | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/exhibitions/${encodeURIComponent(slug)}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      `Exhibition API request failed with status ${response.status}.`
+    );
+  }
+
+  const payload =
+    (await response.json()) as ExhibitionApiResponse;
+
+  if (
+    !payload.ok ||
+    !payload.exhibition
+  ) {
+    throw new Error(
+      payload.error ||
+        "Exhibition API returned an invalid response."
+    );
+  }
+
+  return payload.exhibition;
+}
+
+async function getArtists(): Promise<ArtistApi[]> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/artists`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Artist API request failed with status ${response.status}.`
+    );
+  }
+
+  const payload =
+    (await response.json()) as ArtistsApiResponse;
+
+  if (
+    !payload.ok ||
+    !Array.isArray(payload.artists)
+  ) {
+    throw new Error(
+      payload.error ||
+        "Artist API returned an invalid response."
+    );
+  }
+
+  return payload.artists;
+}
+
+async function getArtworks(): Promise<ArtworkApi[]> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/artworks`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Artwork API request failed with status ${response.status}.`
+    );
+  }
+
+  const payload =
+    (await response.json()) as ArtworksApiResponse;
+
+  if (
+    !payload.ok ||
+    !Array.isArray(payload.artworks)
+  ) {
+    throw new Error(
+      payload.error ||
+        "Artwork API returned an invalid response."
+    );
+  }
+
+  return payload.artworks;
 }
 
 export async function generateMetadata({
@@ -28,27 +189,31 @@ export async function generateMetadata({
 }: ExhibitionDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const room = rooms.find(
-    (item) => item.id === slug
-  );
+  try {
+    const room =
+      await getExhibition(slug);
 
-  if (!room) {
+    if (!room) {
+      return {
+        title: "Exhibition Not Found",
+      };
+    }
+
     return {
-      title: "Exhibition Not Found",
+      title: room.title,
+      description:
+        `${room.title} — ${room.description}. ` +
+        `${room.period}. Curated by SOYO.`,
+    };
+  } catch {
+    return {
+      title: "Exhibition | SOYO",
     };
   }
-
-  return {
-    title: room.title,
-
-    description:
-      `${room.description} ${room.period}. ` +
-      `Explore this curated room on SOYO.`,
-  };
 }
 
 function getStatusLabel(
-  status: "available" | "reserved" | "sold"
+  status: ArtworkStatus
 ) {
   if (status === "reserved") {
     return "Reserved";
@@ -61,36 +226,57 @@ function getStatusLabel(
   return "Available";
 }
 
-function formatIndex(index: number) {
-  if (index < 10) {
-    return `0${index}`;
-  }
-
-  return String(index);
-}
-
 export default async function ExhibitionDetailPage({
   params,
 }: ExhibitionDetailPageProps) {
   const { slug } = await params;
 
-  const room = rooms.find(
-    (item) => item.id === slug
-  );
+  const room =
+    await getExhibition(slug);
 
   if (!room) {
     notFound();
   }
 
-  const roomArtists = artists.filter(
-    (artist) =>
-      room.artistIds.includes(artist.id)
-  );
+  const [
+    allArtists,
+    allArtworks,
+  ] = await Promise.all([
+    getArtists(),
+    getArtworks(),
+  ]);
 
-  const roomArtworks = artworks.filter(
-    (artwork) =>
-      room.artworkIds.includes(artwork.id)
-  );
+  const artistsById =
+    new Map(
+      allArtists.map((artist) => [
+        artist.id,
+        artist,
+      ])
+    );
+
+  const artworksById =
+    new Map(
+      allArtworks.map((artwork) => [
+        artwork.id,
+        artwork,
+      ])
+    );
+
+  const roomArtists =
+    room.artistIds
+      .map((id) => artistsById.get(id))
+      .filter(
+        (artist): artist is ArtistApi =>
+          artist !== undefined
+      );
+
+  const roomArtworks =
+    room.artworkIds
+      .map((id) => artworksById.get(id))
+      .filter(
+        (artwork): artwork is ArtworkApi =>
+          artwork !== undefined
+      );
 
   const isComingSoon =
     roomArtists.length === 0 &&
@@ -134,7 +320,9 @@ export default async function ExhibitionDetailPage({
             Curated Exhibition
           </span>
 
-          <h1>{room.title}</h1>
+          <h1>
+            {room.title}
+          </h1>
 
           <p className="exhibition-detail-description">
             {room.description}
@@ -144,12 +332,12 @@ export default async function ExhibitionDetailPage({
             {room.note}
           </p>
 
-          <a
+          <Link
             href="/exhibitions"
             className="quiet-link"
           >
             ← All Curated Rooms
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -157,10 +345,7 @@ export default async function ExhibitionDetailPage({
       <section className="exhibition-curatorial-section">
         <div className="exhibition-section-label">
           <span>01</span>
-
-          <p>
-            Curatorial Note
-          </p>
+          <p>Curatorial Note</p>
         </div>
 
         <div className="exhibition-curatorial-copy">
@@ -185,18 +370,17 @@ export default async function ExhibitionDetailPage({
             for this room are currently being curated.
           </p>
 
-          <a
+          <Link
             href="/exhibitions"
             className="outline-button"
           >
             View Other Rooms
-
             <span>→</span>
-          </a>
+          </Link>
         </section>
       ) : (
         <>
-          {/* PARTICIPATING ARTISTS */}
+          {/* ARTISTS */}
           {roomArtists.length > 0 ? (
             <section className="exhibition-artists-section">
               <div className="exhibition-section-heading">
@@ -211,9 +395,9 @@ export default async function ExhibitionDetailPage({
                 </div>
 
                 <span className="exhibition-section-count">
-                  {formatIndex(
+                  {String(
                     roomArtists.length
-                  )}
+                  ).padStart(2, "0")}
                 </span>
               </div>
 
@@ -236,8 +420,11 @@ export default async function ExhibitionDetailPage({
 
                       <div className="exhibition-artist-copy">
                         <span className="exhibition-artist-index">
-                          {formatIndex(
+                          {String(
                             index + 1
+                          ).padStart(
+                            2,
+                            "0"
                           )}
                         </span>
 
@@ -255,12 +442,12 @@ export default async function ExhibitionDetailPage({
                           {artist.statement}
                         </p>
 
-                        <a
-                        href={`/artists/${artist.id}`}
-                        className="text-link"
+                        <Link
+                          href="/artists"
+                          className="text-link"
                         >
-                        View Artist →
-                        </a>
+                          View Artist Index →
+                        </Link>
                       </div>
                     </article>
                   )
@@ -269,7 +456,7 @@ export default async function ExhibitionDetailPage({
             </section>
           ) : null}
 
-          {/* SELECTED WORKS */}
+          {/* WORKS */}
           {roomArtworks.length > 0 ? (
             <section className="exhibition-works-section">
               <div className="exhibition-section-heading">
@@ -284,80 +471,75 @@ export default async function ExhibitionDetailPage({
                 </div>
 
                 <span className="exhibition-section-count">
-                  {formatIndex(
+                  {String(
                     roomArtworks.length
-                  )}
+                  ).padStart(2, "0")}
                 </span>
               </div>
 
               <div className="exhibition-work-grid">
                 {roomArtworks.map(
-                  (artwork) => {
-                    const artworkUrl =
-                      `/works/${artwork.id}`;
+                  (artwork) => (
+                    <Link
+                      href={`/works/${artwork.id}`}
+                      className="exhibition-work-card"
+                      key={artwork.id}
+                    >
+                      <div className="exhibition-work-image">
+                        <Image
+                          src={artwork.image}
+                          alt={artwork.title}
+                          fill
+                          className="cover-image"
+                          sizes="(max-width: 820px) 100vw, 50vw"
+                        />
 
-                    return (
-                      <a
-                        href={artworkUrl}
-                        className="exhibition-work-card"
-                        key={artwork.id}
-                      >
-                        <div className="exhibition-work-image">
-                          <Image
-                            src={artwork.image}
-                            alt={artwork.title}
-                            fill
-                            className="cover-image"
-                            sizes="(max-width: 820px) 100vw, 50vw"
-                          />
+                        <span
+                          className={`exhibition-work-status status-${artwork.status}`}
+                        >
+                          <i aria-hidden="true" />
 
-                          <span
-                            className={`exhibition-work-status status-${artwork.status}`}
-                          >
-                            <i aria-hidden="true" />
+                          {getStatusLabel(
+                            artwork.status
+                          )}
+                        </span>
+                      </div>
 
-                            {getStatusLabel(
-                              artwork.status
-                            )}
+                      <div className="exhibition-work-copy">
+                        <div>
+                          <span className="exhibition-work-category">
+                            {artwork.category}
+                          </span>
+
+                          <h3>
+                            {artwork.title}
+                          </h3>
+
+                          <p>
+                            {artwork.artist}
+                          </p>
+
+                          <small>
+                            {artwork.year}
+                            {" · "}
+                            {artwork.material}
+                            {" · "}
+                            {artwork.dimensions}
+                          </small>
+                        </div>
+
+                        <div className="exhibition-work-bottom">
+                          <strong>
+                            {artwork.price}
+                          </strong>
+
+                          <span aria-hidden="true">
+                            →
                           </span>
                         </div>
-
-                        <div className="exhibition-work-copy">
-                          <div>
-                            <span className="exhibition-work-category">
-                              {artwork.category}
-                            </span>
-
-                            <h3>
-                              {artwork.title}
-                            </h3>
-
-                            <p>
-                              {artwork.artist}
-                            </p>
-
-                            <small>
-                              {artwork.year}
-                              {" · "}
-                              {artwork.material}
-                              {" · "}
-                              {artwork.dimensions}
-                            </small>
-                          </div>
-
-                          <div className="exhibition-work-bottom">
-                            <strong>
-                              {artwork.price}
-                            </strong>
-
-                            <span aria-hidden="true">
-                              →
-                            </span>
-                          </div>
-                        </div>
-                      </a>
-                    );
-                  }
+                      </div>
+                    </Link>
+                  )
                 )}
               </div>
             </section>

@@ -1,0 +1,1865 @@
+.soyo-admin-login-page,
+.soyo-admin-dashboard-page,
+.soyo-admin-dashboard-loading {
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: #f2efe9;
+  color: #171512;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.soyo-admin-login-page *,
+.soyo-admin-dashboard-page *,
+.soyo-admin-dashboard-loading * {
+  box-sizing: border-box;
+}
+
+.soyo-admin-login-page {
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.soyo-admin-login-shell {
+  width: min(1120px, 100%);
+  min-height: 680px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+  overflow: hidden;
+  background: #f8f5ef;
+  border: 1px solid rgba(31, 26, 21, 0.14);
+  box-shadow: 0 30px 80px rgba(36, 29, 22, 0.12);
+}
+
+.soyo-admin-login-brand-panel {
+  min-height: 680px;
+  padding: 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #171512;
+  color: #f5f1e9;
+}
+
+.soyo-admin-login-eyebrow,
+.soyo-admin-login-kicker {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-login-eyebrow {
+  color: rgba(245, 241, 233, 0.54);
+}
+
+.soyo-admin-login-brand {
+  margin-top: 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(54px, 7vw, 92px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+}
+
+.soyo-admin-login-brand span {
+  font-size: 0.32em;
+  letter-spacing: 0.04em;
+}
+
+.soyo-admin-login-brand-copy {
+  max-width: 360px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(245, 241, 233, 0.18);
+}
+
+.soyo-admin-login-brand-copy p {
+  margin: 0;
+  color: rgba(245, 241, 233, 0.68);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.soyo-admin-login-form-panel {
+  display: grid;
+  place-items: center;
+  padding: 54px;
+}
+
+.soyo-admin-login-form-inner {
+  width: min(100%, 390px);
+}
+
+.soyo-admin-login-kicker {
+  color: #87796c;
+}
+
+.soyo-admin-login-form-inner h1 {
+  margin: 17px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(44px, 5vw, 66px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.soyo-admin-login-intro {
+  margin: 0;
+  color: #756b61;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.soyo-admin-login-form {
+  margin-top: 42px;
+  display: grid;
+  gap: 24px;
+}
+
+.soyo-admin-login-field {
+  display: grid;
+  gap: 9px;
+}
+
+.soyo-admin-login-field label {
+  color: #554d45;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-login-field input {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid #bdb3a9;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  color: #171512;
+  font: inherit;
+  font-size: 16px;
+}
+
+.soyo-admin-login-field input:focus {
+  border-bottom-color: #171512;
+}
+
+.soyo-admin-login-error {
+  margin: -4px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(141, 48, 36, 0.24);
+  background: rgba(141, 48, 36, 0.06);
+  color: #833629;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.soyo-admin-login-submit {
+  min-height: 54px;
+  margin-top: 5px;
+  padding: 0 20px;
+  border: 1px solid #171512;
+  background: #171512;
+  color: #f8f5ef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font: inherit;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.soyo-admin-login-submit:hover:not(:disabled) {
+  background: #332d27;
+}
+
+.soyo-admin-login-submit:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.soyo-admin-login-security-note {
+  margin: 26px 0 0;
+  color: #9a8d81;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.soyo-admin-session-loading,
+.soyo-admin-dashboard-loading {
+  display: grid;
+  place-items: center;
+  color: #756b61;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-dashboard-page {
+  background: #f4f1eb;
+}
+
+.soyo-admin-dashboard-header {
+  min-height: 78px;
+  padding: 0 42px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.soyo-admin-dashboard-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.soyo-admin-dashboard-brand > span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  letter-spacing: -0.035em;
+}
+
+.soyo-admin-dashboard-brand small {
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.soyo-admin-dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.soyo-admin-dashboard-public-link,
+.soyo-admin-dashboard-logout {
+  color: #5f554c;
+  font: inherit;
+  font-size: 11px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.soyo-admin-dashboard-logout {
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid #7d7267;
+  background: transparent;
+  cursor: pointer;
+}
+
+.soyo-admin-dashboard-hero {
+  padding: 86px 42px 78px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+}
+
+.soyo-admin-dashboard-eyebrow,
+.soyo-admin-dashboard-section-heading p {
+  margin: 0;
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.23em;
+}
+
+.soyo-admin-dashboard-hero-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 70px;
+  align-items: end;
+}
+
+.soyo-admin-dashboard-hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(62px, 9vw, 132px);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.86;
+}
+
+.soyo-admin-dashboard-session-card {
+  padding: 24px 0 4px;
+  border-top: 1px solid #988c80;
+}
+
+.soyo-admin-dashboard-session-card span {
+  color: #8b7e72;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-dashboard-session-card strong {
+  margin-top: 10px;
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.soyo-admin-dashboard-session-card p {
+  margin: 12px 0 0;
+  color: #756b61;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.soyo-admin-dashboard-content {
+  padding: 58px 42px 80px;
+}
+
+.soyo-admin-dashboard-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.soyo-admin-dashboard-section-heading h2 {
+  margin: 10px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.soyo-admin-dashboard-section-heading > span {
+  color: #8b7e72;
+  font-size: 11px;
+}
+
+.soyo-admin-dashboard-grid {
+  margin-top: 38px;
+  border-top: 1px solid rgba(31, 26, 21, 0.16);
+}
+
+.soyo-admin-dashboard-card {
+  min-height: 150px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.16);
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) 100px;
+  gap: 20px;
+  align-items: start;
+}
+
+.soyo-admin-dashboard-card-number {
+  color: #9a8e83;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.soyo-admin-dashboard-card h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-weight: 400;
+}
+
+.soyo-admin-dashboard-card p {
+  max-width: 520px;
+  margin: 10px 0 0;
+  color: #756b61;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.soyo-admin-dashboard-coming-soon {
+  justify-self: end;
+  padding: 6px 9px;
+  border: 1px solid #c3b9af;
+  color: #7a6f65;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .soyo-admin-login-page {
+    padding: 0;
+  }
+
+  .soyo-admin-login-shell {
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .soyo-admin-login-brand-panel {
+    min-height: 280px;
+    padding: 32px 24px;
+  }
+
+  .soyo-admin-login-brand-copy {
+    display: none;
+  }
+
+  .soyo-admin-login-form-panel {
+    padding: 48px 24px 60px;
+  }
+
+  .soyo-admin-dashboard-header {
+    min-height: 68px;
+    padding: 0 20px;
+  }
+
+  .soyo-admin-dashboard-brand small,
+  .soyo-admin-dashboard-public-link {
+    display: none;
+  }
+
+  .soyo-admin-dashboard-hero {
+    padding: 56px 20px 48px;
+  }
+
+  .soyo-admin-dashboard-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .soyo-admin-dashboard-hero h1 {
+    font-size: clamp(58px, 19vw, 94px);
+  }
+
+  .soyo-admin-dashboard-content {
+    padding: 44px 20px 60px;
+  }
+
+  .soyo-admin-dashboard-section-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .soyo-admin-dashboard-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .soyo-admin-dashboard-coming-soon {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Phase 8A — Works management
+--------------------------------------------------------- */
+
+.soyo-admin-dashboard-card-link {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    padding 160ms ease;
+}
+
+.soyo-admin-dashboard-card-link:hover {
+  background: rgba(23, 21, 18, 0.035);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.soyo-admin-works-page {
+  min-height: 100vh;
+  background: #f4f1eb;
+  color: #171512;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.soyo-admin-works-page * {
+  box-sizing: border-box;
+}
+
+.soyo-admin-brand-home-link {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.soyo-admin-brand-home-link > span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  letter-spacing: -0.035em;
+}
+
+.soyo-admin-brand-home-link small {
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.soyo-admin-works-heading {
+  padding: 58px 42px 48px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.soyo-admin-works-heading p {
+  margin: 0;
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.23em;
+}
+
+.soyo-admin-works-heading h1 {
+  margin: 13px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 8vw, 110px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.soyo-admin-primary-button,
+.soyo-admin-secondary-button,
+.soyo-admin-danger-button,
+.soyo-admin-text-button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.soyo-admin-primary-button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid #171512;
+  background: #171512;
+  color: #f7f4ee;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.soyo-admin-primary-button:hover:not(:disabled) {
+  background: #332d27;
+}
+
+.soyo-admin-primary-button:disabled,
+.soyo-admin-danger-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.soyo-admin-secondary-button {
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid #a99e93;
+  color: #5e554d;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.soyo-admin-danger-button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #9f5b52;
+  background: transparent;
+  color: #8a3f35;
+  font-size: 11px;
+}
+
+.soyo-admin-text-button {
+  padding: 7px 0;
+  border: 0;
+  border-bottom: 1px solid #9e9388;
+  background: transparent;
+  color: #665c53;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+}
+
+.soyo-admin-work-message {
+  margin: 22px 42px 0;
+  padding: 13px 15px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.soyo-admin-work-message-error {
+  border: 1px solid rgba(141, 48, 36, 0.24);
+  background: rgba(141, 48, 36, 0.06);
+  color: #833629;
+}
+
+.soyo-admin-work-message-success {
+  border: 1px solid rgba(64, 101, 71, 0.24);
+  background: rgba(64, 101, 71, 0.06);
+  color: #3f6647;
+}
+
+.soyo-admin-works-layout {
+  min-height: calc(100vh - 212px);
+  display: grid;
+  grid-template-columns: minmax(420px, 0.92fr) minmax(520px, 1.08fr);
+}
+
+.soyo-admin-works-list-panel {
+  border-right: 1px solid rgba(31, 26, 21, 0.13);
+}
+
+.soyo-admin-works-list-head {
+  min-height: 54px;
+  padding: 0 42px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-works-list {
+  display: grid;
+}
+
+.soyo-admin-work-row {
+  width: 100%;
+  min-height: 108px;
+  padding: 22px 42px;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  background: transparent;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 120px 78px;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.soyo-admin-work-row:hover,
+.soyo-admin-work-row.is-active {
+  background: #ebe6de;
+}
+
+.soyo-admin-work-index {
+  color: #a09488;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.soyo-admin-work-main {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.soyo-admin-work-main strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.soyo-admin-work-main small,
+.soyo-admin-work-price {
+  color: #756b61;
+  font-size: 11px;
+}
+
+.soyo-admin-work-price {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.soyo-admin-status-pill {
+  justify-self: end;
+  padding: 6px 8px;
+  border: 1px solid #b8ada2;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-status-pill.is-available {
+  color: #3f6647;
+  border-color: #91a793;
+}
+
+.soyo-admin-status-pill.is-reserved {
+  color: #80642e;
+  border-color: #b8a477;
+}
+
+.soyo-admin-status-pill.is-sold {
+  color: #7a4d47;
+  border-color: #b8938d;
+}
+
+.soyo-admin-works-empty {
+  padding: 60px 42px;
+  color: #8b7e72;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+}
+
+.soyo-admin-work-editor {
+  min-width: 0;
+}
+
+.soyo-admin-work-editor-empty {
+  min-height: 560px;
+  padding: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.soyo-admin-work-editor-empty > span,
+.soyo-admin-work-editor-head span,
+.soyo-admin-field > span {
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-work-editor-empty h2 {
+  margin: 18px 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.soyo-admin-work-editor-empty p {
+  max-width: 360px;
+  margin: 0;
+  color: #756b61;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.soyo-admin-work-form {
+  padding: 42px;
+}
+
+.soyo-admin-work-editor-head {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.soyo-admin-work-editor-head h2 {
+  margin: 10px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 37px;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.soyo-admin-work-form-grid {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 22px;
+}
+
+.soyo-admin-field {
+  min-width: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.soyo-admin-field-wide {
+  grid-column: 1 / -1;
+}
+
+.soyo-admin-field input,
+.soyo-admin-field select,
+.soyo-admin-field textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #bdb3a9;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #171512;
+  font: inherit;
+  font-size: 14px;
+}
+
+.soyo-admin-field input,
+.soyo-admin-field select {
+  min-height: 44px;
+}
+
+.soyo-admin-field textarea {
+  padding: 12px 0;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+.soyo-admin-field input:focus,
+.soyo-admin-field select:focus,
+.soyo-admin-field textarea:focus {
+  border-bottom-color: #171512;
+}
+
+.soyo-admin-field input:disabled {
+  color: #8f857a;
+  cursor: not-allowed;
+}
+
+.soyo-admin-field small {
+  color: #9a8d81;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.soyo-admin-work-form-actions {
+  margin-top: 38px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+}
+
+.soyo-admin-work-form-actions > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Artwork image upload */
+.soyo-admin-image-uploader {
+  min-height: 250px;
+  border: 1px solid rgba(31, 26, 21, 0.16);
+  display: grid;
+  grid-template-columns: minmax(180px, 0.78fr) minmax(0, 1.22fr);
+  background: rgba(249, 246, 240, 0.62);
+}
+
+.soyo-admin-image-preview {
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  background: #e7e0d6;
+}
+
+.soyo-admin-image-preview img {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  display: block;
+  object-fit: cover;
+}
+
+.soyo-admin-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #9b8f84;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+
+.soyo-admin-image-upload-copy {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.soyo-admin-image-upload-copy strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.soyo-admin-image-upload-copy p {
+  margin: 11px 0 0;
+  color: #756b61;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.soyo-admin-image-upload-copy small {
+  margin-top: 7px;
+  color: #998d81;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.soyo-admin-image-upload-actions {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.soyo-admin-image-choose-button {
+  cursor: pointer;
+}
+
+.soyo-admin-image-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1050px) {
+  .soyo-admin-works-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .soyo-admin-works-list-panel {
+    border-right: 0;
+    border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  }
+
+  .soyo-admin-work-editor {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 760px) {
+  .soyo-admin-works-heading {
+    padding: 44px 20px 34px;
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .soyo-admin-works-list-head {
+    padding: 0 20px;
+  }
+
+  .soyo-admin-work-row {
+    padding: 20px;
+    grid-template-columns: 30px minmax(0, 1fr) 70px;
+  }
+
+  .soyo-admin-work-price {
+    display: none;
+  }
+
+  .soyo-admin-work-form {
+    padding: 32px 20px 50px;
+  }
+
+  .soyo-admin-work-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .soyo-admin-field-wide {
+    grid-column: auto;
+  }
+
+  .soyo-admin-work-editor-empty {
+    padding: 52px 20px;
+  }
+
+  .soyo-admin-image-uploader {
+    grid-template-columns: 1fr;
+  }
+
+  .soyo-admin-image-preview,
+  .soyo-admin-image-preview img {
+    min-height: 310px;
+  }
+
+  .soyo-admin-image-upload-copy {
+    padding: 24px 20px 28px;
+  }
+
+  .soyo-admin-image-upload-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .soyo-admin-image-upload-actions .soyo-admin-secondary-button {
+    justify-content: center;
+  }
+
+  .soyo-admin-work-form-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .soyo-admin-work-form-actions > div {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .soyo-admin-primary-button,
+  .soyo-admin-secondary-button {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------------------------------
+   Phase 8B — Artists management
+--------------------------------------------------------- */
+
+.soyo-admin-artist-row {
+  width: 100%;
+  min-height: 104px;
+  padding: 18px 42px;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  background: transparent;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 34px 58px minmax(0, 1fr) 78px;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.soyo-admin-artist-row:hover,
+.soyo-admin-artist-row.is-active {
+  background: #ebe6de;
+}
+
+.soyo-admin-artist-thumb {
+  position: relative;
+  width: 58px;
+  height: 68px;
+  overflow: hidden;
+  background: #e5ddd2;
+}
+
+.soyo-admin-artist-thumb img {
+  object-fit: cover;
+}
+
+.soyo-admin-artist-count {
+  justify-self: end;
+  color: #83786e;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.soyo-admin-artist-image-uploader .soyo-admin-image-preview {
+  min-height: 310px;
+}
+
+.soyo-admin-artist-image-uploader .soyo-admin-image-preview img {
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .soyo-admin-artist-row {
+    padding: 16px 20px;
+    grid-template-columns: 28px 50px minmax(0, 1fr);
+  }
+
+  .soyo-admin-artist-thumb {
+    width: 50px;
+    height: 60px;
+  }
+
+  .soyo-admin-artist-count {
+    display: none;
+  }
+}
+/* ---------------------------------------------------------
+   Phase 8C — Exhibitions management
+--------------------------------------------------------- */
+
+.soyo-admin-exhibition-row {
+  width: 100%;
+  min-height: 110px;
+  padding: 18px 42px;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  background: transparent;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 34px 66px minmax(0, 1fr) 118px;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.soyo-admin-exhibition-row:hover,
+.soyo-admin-exhibition-row.is-active {
+  background: #ebe6de;
+}
+
+.soyo-admin-exhibition-room-number {
+  color: #9a8e83;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.soyo-admin-exhibition-thumb {
+  position: relative;
+  width: 66px;
+  height: 66px;
+  overflow: hidden;
+  background: #e5ddd2;
+}
+
+.soyo-admin-exhibition-thumb img {
+  object-fit: cover;
+}
+
+.soyo-admin-exhibition-counts {
+  justify-self: end;
+  color: #83786e;
+  font-size: 9px;
+  line-height: 1.5;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.soyo-admin-exhibition-image-uploader .soyo-admin-image-preview,
+.soyo-admin-exhibition-image-uploader .soyo-admin-image-preview img {
+  min-height: 280px;
+}
+
+.soyo-admin-exhibition-image-uploader .soyo-admin-image-preview img {
+  object-fit: cover;
+}
+
+.soyo-admin-relation-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.82fr);
+  border: 1px solid rgba(31, 26, 21, 0.14);
+  background: rgba(249, 246, 240, 0.5);
+}
+
+.soyo-admin-relation-choices {
+  max-height: 360px;
+  overflow: auto;
+  border-right: 1px solid rgba(31, 26, 21, 0.14);
+}
+
+.soyo-admin-relation-choice {
+  min-height: 70px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.1);
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.soyo-admin-relation-choice:last-child {
+  border-bottom: 0;
+}
+
+.soyo-admin-relation-choice:hover {
+  background: rgba(23, 21, 18, 0.025);
+}
+
+.soyo-admin-relation-choice input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: #171512;
+}
+
+.soyo-admin-relation-choice span {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.soyo-admin-relation-choice strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.soyo-admin-relation-choice small {
+  color: #7f746a;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.soyo-admin-relation-choice em {
+  color: #8c7862;
+  font-size: 8px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-relation-choice input:disabled + span {
+  opacity: 0.72;
+}
+
+.soyo-admin-relation-order {
+  min-width: 0;
+}
+
+.soyo-admin-relation-order-head {
+  min-height: 48px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.soyo-admin-relation-order-head span {
+  color: #8b7e72;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+
+.soyo-admin-relation-order-head small {
+  color: #8c8177;
+  font-size: 9px;
+}
+
+.soyo-admin-relation-order-row {
+  min-height: 56px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.08);
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.soyo-admin-relation-order-row > span {
+  color: #9a8e83;
+  font-size: 8px;
+}
+
+.soyo-admin-relation-order-row > strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.soyo-admin-relation-order-row > div {
+  display: flex;
+  gap: 4px;
+}
+
+.soyo-admin-relation-order-row button {
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: 1px solid #b8ada2;
+  background: transparent;
+  color: #5f554c;
+  cursor: pointer;
+}
+
+.soyo-admin-relation-order-row button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.soyo-admin-relation-empty {
+  margin: 0;
+  padding: 24px 16px;
+  color: #90847a;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .soyo-admin-exhibition-row {
+    padding: 16px 20px;
+    grid-template-columns: 28px 54px minmax(0, 1fr);
+  }
+
+  .soyo-admin-exhibition-thumb {
+    width: 54px;
+    height: 54px;
+  }
+
+  .soyo-admin-exhibition-counts {
+    display: none;
+  }
+
+  .soyo-admin-relation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .soyo-admin-relation-choices {
+    max-height: 300px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(31, 26, 21, 0.14);
+  }
+}
+/* ---------------------------------------------------------
+   Phase 8D — Collector inquiry management
+--------------------------------------------------------- */
+
+.soyo-admin-inquiries-page {
+  min-height: 100vh;
+  background: #f4f1eb;
+  color: #171512;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.soyo-admin-inquiries-page * {
+  box-sizing: border-box;
+}
+
+.soyo-admin-inquiries-heading {
+  padding: 58px 42px 42px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.soyo-admin-inquiries-heading p {
+  margin: 0;
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.23em;
+}
+
+.soyo-admin-inquiries-heading h1 {
+  margin: 13px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 8vw, 108px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.soyo-admin-inquiries-total {
+  min-width: 160px;
+  padding-top: 14px;
+  border-top: 1px solid #9f9388;
+  display: grid;
+  gap: 4px;
+}
+
+.soyo-admin-inquiries-total span,
+.soyo-admin-inquiries-total small {
+  color: #8b7e72;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-inquiries-total strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 400;
+}
+
+.soyo-admin-inquiry-toolbar {
+  min-height: 72px;
+  padding: 12px 42px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.soyo-admin-inquiry-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.soyo-admin-inquiry-filters button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #c2b8ae;
+  background: transparent;
+  color: #71675e;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.soyo-admin-inquiry-filters button span {
+  color: #9a8f84;
+}
+
+.soyo-admin-inquiry-filters button.is-active {
+  border-color: #171512;
+  background: #171512;
+  color: #f7f4ee;
+}
+
+.soyo-admin-inquiry-filters button.is-active span {
+  color: #d8d0c6;
+}
+
+.soyo-admin-inquiry-search {
+  min-width: 280px;
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.soyo-admin-inquiry-search span {
+  color: #8b7e72;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-inquiry-search input {
+  min-height: 36px;
+  padding: 0 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid #bdb3a9;
+  outline: 0;
+  background: transparent;
+  color: #171512;
+  font: inherit;
+  font-size: 12px;
+}
+
+.soyo-admin-inquiries-layout {
+  min-height: 660px;
+  display: grid;
+  grid-template-columns: minmax(470px, 0.9fr) minmax(560px, 1.1fr);
+}
+
+.soyo-admin-inquiry-list-panel {
+  min-width: 0;
+  border-right: 1px solid rgba(31, 26, 21, 0.13);
+}
+
+.soyo-admin-inquiry-list-head {
+  min-height: 52px;
+  padding: 0 42px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: #8b7e72;
+  font-size: 8px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-inquiry-list {
+  display: grid;
+}
+
+.soyo-admin-inquiry-row {
+  width: 100%;
+  min-height: 112px;
+  padding: 19px 42px;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  background: transparent;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 118px 74px;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.soyo-admin-inquiry-row:hover,
+.soyo-admin-inquiry-row.is-active {
+  background: #ebe6de;
+}
+
+.soyo-admin-inquiry-row.is-new .soyo-admin-inquiry-main strong::after {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: #754c3b;
+  vertical-align: middle;
+}
+
+.soyo-admin-inquiry-id {
+  color: #9b8f84;
+  font-size: 9px;
+}
+
+.soyo-admin-inquiry-main {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.soyo-admin-inquiry-main strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.soyo-admin-inquiry-main small,
+.soyo-admin-inquiry-main em {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #746a61;
+  font-size: 9px;
+  font-style: normal;
+}
+
+.soyo-admin-inquiry-date {
+  color: #7f746a;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.soyo-admin-inquiry-status {
+  justify-self: end;
+  padding: 6px 8px;
+  border: 1px solid #b6aca2;
+  color: #6f655c;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-inquiry-status.is-new {
+  border-color: #a97965;
+  color: #7d4935;
+  background: rgba(151, 94, 70, 0.055);
+}
+
+.soyo-admin-inquiry-status.is-read {
+  border-color: #8d9eaa;
+  color: #536a79;
+}
+
+.soyo-admin-inquiry-status.is-replied {
+  border-color: #8da18b;
+  color: #46604b;
+}
+
+.soyo-admin-inquiry-status.is-closed {
+  border-color: #aaa39b;
+  color: #7b746d;
+  opacity: 0.78;
+}
+
+.soyo-admin-inquiry-empty {
+  padding: 60px 42px;
+  color: #8b7e72;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+}
+
+.soyo-admin-inquiry-detail-panel {
+  min-width: 0;
+}
+
+.soyo-admin-inquiry-detail-empty {
+  min-height: 620px;
+  padding: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.soyo-admin-inquiry-detail-empty span {
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.soyo-admin-inquiry-detail-empty h2 {
+  margin: 18px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.soyo-admin-inquiry-detail {
+  padding: 42px;
+}
+
+.soyo-admin-inquiry-detail-head {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.soyo-admin-inquiry-detail-head > div > span {
+  color: #8b7e72;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+
+.soyo-admin-inquiry-detail-head h2 {
+  margin: 10px 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.soyo-admin-inquiry-detail-head p {
+  margin: 0;
+  color: #81766c;
+  font-size: 10px;
+}
+
+.soyo-admin-inquiry-section {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+}
+
+.soyo-admin-inquiry-section-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #8b7e72;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+.soyo-admin-inquiry-artwork-card {
+  padding: 18px;
+  border: 1px solid #c8beb3;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.soyo-admin-inquiry-artwork-card > div {
+  display: grid;
+  gap: 6px;
+}
+
+.soyo-admin-inquiry-artwork-card > div:last-child {
+  justify-items: end;
+}
+
+.soyo-admin-inquiry-artwork-card strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.soyo-admin-inquiry-artwork-card small,
+.soyo-admin-inquiry-artwork-card span,
+.soyo-admin-inquiry-artwork-card a {
+  color: #70665d;
+  font-size: 10px;
+}
+
+.soyo-admin-inquiry-artwork-card a {
+  padding-bottom: 2px;
+  border-bottom: 1px solid #95897e;
+}
+
+.soyo-admin-inquiry-contact-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 28px;
+}
+
+.soyo-admin-inquiry-contact-grid > div {
+  min-width: 0;
+}
+
+.soyo-admin-inquiry-contact-grid dt {
+  margin-bottom: 7px;
+  color: #93877c;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.soyo-admin-inquiry-contact-grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #332e29;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+}
+
+.soyo-admin-inquiry-contact-grid a {
+  border-bottom: 1px solid #aca096;
+}
+
+.soyo-admin-inquiry-message {
+  min-height: 86px;
+  padding: 18px;
+  border: 1px solid #c8beb3;
+  background: rgba(255, 253, 249, 0.35);
+  color: #3c3630;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.soyo-admin-inquiry-followup-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.65fr) minmax(220px, 1fr);
+  gap: 24px;
+  align-items: end;
+}
+
+.soyo-admin-inquiry-reply {
+  width: 100%;
+  text-decoration: none;
+}
+
+.soyo-admin-inquiry-note-field {
+  margin-top: 26px;
+}
+
+.soyo-admin-inquiry-save-row {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.soyo-admin-inquiry-save-row small {
+  color: #8d8177;
+  font-size: 9px;
+}
+
+@media (max-width: 1050px) {
+  .soyo-admin-inquiries-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .soyo-admin-inquiry-list-panel {
+    border-right: 0;
+    border-bottom: 1px solid rgba(31, 26, 21, 0.13);
+  }
+}
+
+@media (max-width: 760px) {
+  .soyo-admin-inquiries-heading {
+    padding: 44px 20px 32px;
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .soyo-admin-inquiry-toolbar {
+    padding: 14px 20px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .soyo-admin-inquiry-search {
+    min-width: 0;
+  }
+
+  .soyo-admin-inquiry-list-head {
+    padding: 0 20px;
+  }
+
+  .soyo-admin-inquiry-list-head span:last-child {
+    display: none;
+  }
+
+  .soyo-admin-inquiry-row {
+    padding: 18px 20px;
+    grid-template-columns: 38px minmax(0, 1fr) 72px;
+  }
+
+  .soyo-admin-inquiry-date {
+    display: none;
+  }
+
+  .soyo-admin-inquiry-detail {
+    padding: 32px 20px 50px;
+  }
+
+  .soyo-admin-inquiry-detail-empty {
+    padding: 52px 20px;
+  }
+
+  .soyo-admin-inquiry-contact-grid,
+  .soyo-admin-inquiry-followup-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .soyo-admin-inquiry-artwork-card,
+  .soyo-admin-inquiry-save-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .soyo-admin-inquiry-artwork-card > div:last-child {
+    justify-items: start;
+  }
+
+  .soyo-admin-inquiry-save-row .soyo-admin-primary-button {
+    width: 100%;
+  }
+}
